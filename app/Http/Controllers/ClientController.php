@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\data_contact;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -14,7 +15,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        //$client = Client::all();
+        return view('client.index');//,compact('client'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('client.create');
     }
 
     /**
@@ -35,7 +37,12 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = data_contact::create($request->all());
+        $client = New Client;
+        $client->visits = 0;
+        $client->data_contact_id = $data->id;
+        $client->save();
+        return view('client.index');
     }
 
     /**

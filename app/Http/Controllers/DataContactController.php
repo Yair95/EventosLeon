@@ -35,7 +35,8 @@ class DataContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      data_contact::create($request->all());
+      //return back();
     }
 
     /**

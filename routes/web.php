@@ -22,3 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin', function(){
   return view('admin.dashboard');
 });
+
+/*Route::get('/client', 'ClientController@index')->name('client');
+Route::get('/client', 'ClientController@create')->name('client_create');*/
+Route::resource('client','ClientController');
+
+Route::resource('data_contact','DataContactController');
