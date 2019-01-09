@@ -15,8 +15,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //$client = Client::all();
-        return view('client.index');//,compact('client'));
+        $clients = Client::all();
+        return view('client.index',compact('clients'));
     }
 
     /**
@@ -42,7 +42,9 @@ class ClientController extends Controller
         $client->visits = 0;
         $client->data_contact_id = $data->id;
         $client->save();
-        return view('client.index');
+
+        $clients = Client::all();
+        return view('client.index',compact('clients'));
     }
 
     /**

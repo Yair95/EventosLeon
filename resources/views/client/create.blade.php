@@ -1,12 +1,16 @@
+@extends('admin.layout')
+@section('content')
 
-
-@section('content-header')
+<section class="content-header">
   <h1>
     Clintes
     <small>Agregar cliente</small>
   </h1>
-@endsection
+</section>
+
 <form action="{{url('client')}}" method="post">
-@extends('data_contact.create')
-@section('form-continue')
+  {{csrf_field()}}
+@include('data_contact.create')
+<button type="submit" class="btn btn-primary">Guardar</button>
+</form>
 @endsection

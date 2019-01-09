@@ -1,8 +1,4 @@
-@extends('admin.layout')
-@section('content')
-
-  {{csrf_field()}}
-  <div class="form-row">
+<div class="form-row">
     <div class="form-group col-md-6">
       <input type="text" class="form-control" placeholder="First name" name="name" id="name">
     </div>
@@ -26,12 +22,3 @@
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
   </div>
-
-
-    @yield('continue-form')
-
-  <button type="submit" class="btn btn-primary">Guardar</button>
-
-
-</form>
-@stop
