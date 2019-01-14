@@ -10,15 +10,15 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="phone1">Phone 1</label>
-      <input type="numeric" class="form-control" placeholder="3333333333" name="phone1" id="phone1">
+      <input type="numeric" class="form-control" name="phone1" id="phone1">
     </div>
     <div class="form-group col-md-6">
       <label for="phone2">Phone 2</label>
-      <input type="numeric" class="form-control" placeholder="3333333333">
+      <input type="numeric" class="form-control" id="phone2">
     </div>
   </div>
 
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="email" class="form-control" aria-describedby="emailHelp" id="email">
   </div>

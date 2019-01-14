@@ -23,8 +23,7 @@ class ClientController extends Controller
     public function showTable()
     {
       $clients = DB::table('clients')
-        ->select('clients.id','data_contacts.name','data_contacts.lastname','data_contacts.phone1',
-        'clients.visits')
+        ->select('clients.*','data_contacts.*')
         ->join('data_contacts', 'data_contacts.id', '=', 'clients.data_contact_id')
         ->get();
 
@@ -59,7 +58,7 @@ class ClientController extends Controller
         $client->save();
 
         $clients = Client::all();
-        return view('client.index',compact('clients'));
+        return view('client.index');
     }
 
     /**
@@ -70,7 +69,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+
     }
 
     /**
@@ -81,7 +80,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('client.edit', ['client' => $client]);
     }
 
     /**
@@ -91,9 +90,19 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request)
     {
-        //
+        //dd($request->all());
+
+        //$user->update($request->only('email'))
+        //$profile = $user->profile()->update($request->except('email'));
+
+        //Truena porque debe guarar datos en dos tablas y solo guardo en clients
+        $client = Client::findOrFail($request->client_id);
+        //dd($client->data_contact);
+        $client->update($request->only('comments'));
+        //$client->update($request->all());
+        return view('client.index');
     }
 
     /**

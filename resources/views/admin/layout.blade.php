@@ -229,6 +229,7 @@ desired effect
 <!-- AdminLTE App -->
 <script src="/adminlte/dist/js/adminlte.min.js"></script>
 
+
 @yield('adminlte_js')
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
