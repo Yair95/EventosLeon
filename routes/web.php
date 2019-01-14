@@ -26,5 +26,9 @@ Route::get('admin', function(){
 /*Route::get('/client', 'ClientController@index')->name('client');
 Route::get('/client', 'ClientController@create')->name('client_create');*/
 Route::resource('client','ClientController');
+Route::get('showTable','ClientController@showTable')->name('client.showTable');
+/*Route::get('client/showT',function(){
+  return DataTables::eloquent(Client::query())->make(true);
+});*/
 
 Route::resource('data_contact','DataContactController');

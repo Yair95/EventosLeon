@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\data_contact;
+use DB;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class ClientController extends Controller
 {
@@ -15,8 +17,21 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
-        return view('client.index',compact('clients'));
+        return view('client.index');
+    }
+
+    public function showTable()
+    {
+      $clients = DB::table('clients')
+        ->select('clients.id','data_contacts.name','data_contacts.lastname','data_contacts.phone1',
+        'clients.visits')
+        ->join('data_contacts', 'data_contacts.id', '=', 'clients.data_contact_id')
+        ->get();
+
+        return Datatables::of($clients)
+        ->addColumn('btn', 'client.actions')
+        ->rawColumns(['btn'])
+      ->make(true);
     }
 
     /**

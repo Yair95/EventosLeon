@@ -13,33 +13,18 @@
 
 @section('content')
       <h1>Lista de clientes</h1>
-
-
       <div class="box-body">
-
           <table id="clients-table" class="table table-striped table-bordered" style="width:100%">
           <thead>
               <tr>
+                  <th>ID</th>
                   <th>Nombre</th>
                   <th>Apellido</th>
                   <th>Teléfono 1</th>
-                  <th>Vistas</th>
+                  <th>Visitas</th>
                   <th>Acciones</th>
               </tr>
           </thead>
-          <tbody>
-            @foreach($clients as $cli)
-              <tr>
-                <td>{{$cli->data_contact->name}}</td>
-                <td>{{$cli->data_contact->lastname}}</td>
-                <td>{{$cli->data_contact->phone1}}</td>
-                <td>{{$cli->visits}}</td>
-                <td> <button class="btn btn-primary"><i class="fa fa-eye"></i></button>
-                  <button class="btn btn-info" data-nameclient="hello" data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i></button>
-                  <button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
-              </tr>
-            @endforeach
-          </tbody>
       </table>
       </div>
 
@@ -73,10 +58,24 @@
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-
-    <script>
-        $(function () {
-            $("#clients-table").DataTable();
-        });
-    </script>
+  <script>
+      $(document).ready(function() {
+          $('#clients-table').DataTable({
+              "processing": true,
+              "serverSide": true,
+              "ajax": "{{route('client.showTable')}}",
+              "columns": [
+                  {data: 'id'},
+                  {data: 'name'},
+                  {data: 'lastname'},
+                  {data: 'phone1'},
+                  {data: 'visits'},
+                  {data: 'btn'}
+              ]/*,
+              "initComplete":function(settings, json){
+      console.log(json);
+    }*/
+          });
+      });
+  </script>
 @stop

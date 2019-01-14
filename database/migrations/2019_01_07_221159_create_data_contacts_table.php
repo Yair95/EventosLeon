@@ -17,8 +17,8 @@ class CreateDataContactsTable extends Migration
             $table->increments('id');
             $table->string('name',128);
             $table->string('lastname',128);
-            $table->smallInteger('phone1')->unsigned();
-            $table->smallInteger('phone2')->unsigned()->nullable();
+            $table->unsignedBigInteger('phone1')->unsigned();
+            $table->unsignedBigInteger('phone2')->nullable();
             $table->string('email',128)->nullable();
             $table->timestamps();
         });
