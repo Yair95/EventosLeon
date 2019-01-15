@@ -80,7 +80,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        return view('client.edit', ['client' => $client]);
+        //return view('client.edit', ['client' => $client]);
     }
 
     /**
@@ -92,16 +92,19 @@ class ClientController extends Controller
      */
     public function update(Request $request)
     {
-        //dd($request->all());
-
-        //$user->update($request->only('email'))
-        //$profile = $user->profile()->update($request->except('email'));
-
-        //Truena porque debe guarar datos en dos tablas y solo guardo en clients
         $client = Client::findOrFail($request->client_id);
-        //dd($client->data_contact);
-        $client->update($request->only('comments'));
-        //$client->update($request->all());
+        $client->prestige = $request->prestige;
+        $client->comments = $request->comments;
+        $client->save();
+
+        $data = data_contact::findOrFail($client->data_contact_id);
+        $data->name = $request->name;
+        $data->lastname = $request->lastname;
+        $data->phone1 = $request->phone1;
+        $data->phone2 = $request->phone2;
+        $data->email = $request->email;
+        $data->save();
+
         return view('client.index');
     }
 

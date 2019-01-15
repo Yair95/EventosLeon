@@ -13,4 +13,5 @@
     data-emailclient="{{$email}}"
     data-prestigeclient="{{$prestige}}"
     data-commentsclient="{{$comments}}"
+
     data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i></button>

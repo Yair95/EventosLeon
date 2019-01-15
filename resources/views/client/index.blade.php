@@ -28,7 +28,6 @@
       </table>
       </div>
 
-
     <!-- Modal -->
     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -42,6 +41,7 @@
           		{{csrf_field()}}
     	      <div class="modal-body">
     	      		<input type="hidden" name="client_id" id="cli_id">
+                <input type="hidden" name="data_id" id="data_id">
     				@include('client.edit')
     	      </div>
     	      <div class="modal-footer">
@@ -66,6 +66,7 @@
       var email = button.data('emailclient')
       var prestige = button.data('prestigeclient')
       var comments = button.data('commentsclient')
+      var data_id = button.data('iddata')
       var modal = $(this)
       modal.find('.modal-body #cli_id').val(id);
       modal.find('.modal-body #name').val(name);
@@ -75,6 +76,7 @@
       modal.find('.modal-body #email').val(email);
       modal.find('.modal-body #prestige').val(prestige);
       modal.find('.modal-body #comments').val(comments);
+      modal.find('.modal-body #data_id').val(data_id);
   });
   </script>
 
@@ -118,13 +120,6 @@
       console.log(json);
     }*/
           });
-
-
-
-
       });
   </script>
-
-
-
 @stop
