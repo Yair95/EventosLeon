@@ -56,6 +56,16 @@
 
 @section('adminlte_js')
   <script>
+
+  function add(id)
+  {
+      alert(id);
+  }
+
+  $('.delete').on('click', function() {
+    alert(id);
+  });
+
   $('#edit').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget)
       var id = button.data('idclient')
@@ -78,7 +88,11 @@
       modal.find('.modal-body #comments').val(comments);
       modal.find('.modal-body #data_id').val(data_id);
   });
+
+
   </script>
+
+
 
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -120,6 +134,10 @@
       console.log(json);
     }*/
           });
+
+
       });
+
+
   </script>
 @stop
