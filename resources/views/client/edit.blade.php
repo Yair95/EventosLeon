@@ -13,5 +13,5 @@
   </div>
 <div class="form-group">
 	        		<label for="des">Comentarios</label>
-	        		<textarea name="comments" id="comments" cols="20" rows="3" id='des' class="form-control"></textarea>
+	        		<textarea name="comments" id="comments" cols="20" rows="3" class="form-control"></textarea>
 </div>

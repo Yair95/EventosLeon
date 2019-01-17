@@ -28,43 +28,67 @@
       </table>
       </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Editar cliente</h4>
-          </div>
-          <form action="{{route('client.update','modifyclient')}}" method="post">
-          		{{method_field('patch')}}
-          		{{csrf_field()}}
-    	      <div class="modal-body">
-    	      		<input type="hidden" name="client_id" id="cli_id">
-                <input type="hidden" name="data_id" id="data_id">
-    				@include('client.edit')
-    	      </div>
-    	      <div class="modal-footer">
-    	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-    	        <button type="submit" class="btn btn-primary">Guardar cambios</button>
-    	      </div>
-          </form>
-        </div>
-      </div>
-    </div>
+      @include('client.modal')
 @stop
 
 @section('adminlte_js')
   <script>
 
+  /*$(document).on('click', '.button', function (e) {
+    e.preventDefault();
+    var id = $(this).data('id');
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+          type: "DELETE",
+          //url: "url(/client/"+id")",
+          url: "{//{route('client.destroy', id)}}"
+          //data: {id:id}
+        });
+
+
+
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      };
+    });
+});*/
+
   function add(id)
   {
-      alert(id);
-  }
+    alert("nuevl");
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+          type: "DELETE",
+          //url: "url(/client/"+id")",
+          //url: "{//{route('client.destroy')}}"
+          //data: {id:id}
+        });
 
-  $('.delete').on('click', function() {
-    alert(id);
-  });
+
+
+        /*swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });*/
+      };
+    });
+  }
 
   $('#edit').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget)
@@ -97,6 +121,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
   <script>
       $(document).ready(function() {
           $('#clients-table').DataTable({

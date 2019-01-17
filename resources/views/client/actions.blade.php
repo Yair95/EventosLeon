@@ -12,9 +12,13 @@
   data-commentsclient="{{$comments}}"
   data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i></button>
 
-<a href="{{ route('client.destroy', $id) }}" id="delete" onclick="add( {{ $id }} );" data-idclient="{{$id}}" class="btn btn-danger btn-sm">
-  <i class="fa fa-trash"></i></a>
+  <a  id="delete" onclick="add( {{ $id }} );" data-idclient="{{$id}}" class="btn btn-danger btn-sm">
+    <i class="fa fa-trash"></i></a>
 
 <!--
+
+<a href="" class="button" data-id="{{$id}}">Delete</a>
+href="{{ route('client.destroy', $id) }}"
+
   <button type="button" onclick="add( {{ $id }} );" data-idclient="{{$id}}" id="delete" class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i></button>
 -->

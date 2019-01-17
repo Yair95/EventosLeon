@@ -69,7 +69,8 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-
+      //dd($client);
+        return view('client.show')->with('client',$client);
     }
 
     /**
@@ -114,8 +115,9 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy(Request $client)
     {
-        //
+        Client::find($client->id)->delete();
+        return redirect()->route('client.index') ->with('success','User deleted successfully');
     }
 }

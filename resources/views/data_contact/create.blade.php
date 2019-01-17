@@ -9,16 +9,16 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="phone1">Phone 1</label>
+      <label for="phone1">Teléfono 1</label>
       <input type="numeric" class="form-control" name="phone1" id="phone1">
     </div>
     <div class="form-group col-md-6">
-      <label for="phone2">Phone 2</label>
-      <input type="numeric" class="form-control" id="phone2">
+      <label for="phone2">Teléfono 2</label>
+      <input type="numeric" class="form-control" name="phone2" id="phone2">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" aria-describedby="emailHelp" id="email">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" aria-describedby="emailHelp" name="email" id="email">
   </div>
