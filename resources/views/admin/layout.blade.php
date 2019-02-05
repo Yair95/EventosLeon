@@ -13,6 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="/adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/adminlte/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <!-- Ionicons -->
   <link rel="stylesheet" href="/adminlte/bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
@@ -121,6 +122,47 @@ desired effect
             <li><a href="#">Agregar proveedor</a></li>
           </ul>
         </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-shopping-bag"></i> <span>Servicios</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Lista de servicios</a></li>
+            <li><a href="#">Agregar servicios</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-calendar-day"></i> <span>Eventos</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Lista de eventos</a></li>
+            <li><a href="#">Agregar evento</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#"><i class="far fa-handshake"></i> <span>Anticipos</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Lista de anticipos</a></li>
+            <li><a href="#">Agregar anticipo</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-calendar-alt"></i> <span>Calendario</span>
+          </a>
+        </li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -228,7 +270,11 @@ desired effect
 <script src="/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/adminlte/dist/js/adminlte.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script>
+
+</script>
 
 @yield('adminlte_js')
 

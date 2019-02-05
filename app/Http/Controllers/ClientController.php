@@ -106,6 +106,7 @@ class ClientController extends Controller
         $data->email = $request->email;
         $data->save();
 
+
         return view('client.index');
     }
 
@@ -115,9 +116,9 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $client)
+    public function destroy($id)
     {
-        Client::find($client->id)->delete();
-        return redirect()->route('client.index') ->with('success','User deleted successfully');
+        data_contact::destroy($id);
+        return view('client.index');
     }
 }

@@ -2,6 +2,7 @@
 
 @section('adminlte_css')
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+  <meta name="csrf-token" = content="{{ csrf_token() }}">
 @stop
 
 @section('content-header')
@@ -13,8 +14,15 @@
 
 @section('content')
       <h2>Lista de clientes</h2>
+
+
+        <a href="{{ url('client/create') }}" class="btn btn-success"
+        style="Position:Absolute; left:93%; top:13%;">
+          <i class="fas fa-plus-square"></i> Agregar</a>
+
+
       <div class="box-body">
-          <table id="clients-table" class="table table-striped table-bordered" style="width:100%">
+          <table id="clients_table" class="table table-striped table-bordered" style="width:100%">
           <thead>
               <tr>
                   <th width="10px">Id</th>
@@ -28,46 +36,20 @@
       </table>
       </div>
 
+
       @include('client.modal')
+
 @stop
 
 @section('adminlte_js')
   <script>
 
-  /*$(document).on('click', '.button', function (e) {
-    e.preventDefault();
-    var id = $(this).data('id');
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
-    .then((willDelete) => {
-      if (willDelete) {
-        $.ajax({
-          type: "DELETE",
-          //url: "url(/client/"+id")",
-          url: "{//{route('client.destroy', id)}}"
-          //data: {id:id}
-        });
-
-
-
-        swal("Poof! Your imaginary file has been deleted!", {
-          icon: "success",
-        });
-      };
-    });
-});*/
-
   function add(id)
   {
-    alert("nuevl");
+    var csrf_token=$('meta[name="csrf-token"]').attr('content');
     swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
+      title: "Estás seguro?",
+      text: "Se eliminará el cliente",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -75,17 +57,17 @@
     .then((willDelete) => {
       if (willDelete) {
         $.ajax({
-          type: "DELETE",
-          //url: "url(/client/"+id")",
-          //url: "{//{route('client.destroy')}}"
-          //data: {id:id}
+          url: "{{url('/client')}}" + '/' + id,
+            type: "POST",
+            data: {'_method' : 'DELETE', '_token' : csrf_token},
+            success: function (data) {
+              //clients_table.ajax.reload();
+              swal("Cliente eliminado exitosamente", {
+                icon: "success",
+              });
+                }
         });
 
-
-
-        /*swal("Poof! Your imaginary file has been deleted!", {
-          icon: "success",
-        });*/
       };
     });
   }
@@ -121,10 +103,12 @@
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <script>
       $(document).ready(function() {
-          $('#clients-table').DataTable({
+          $('#clients_table').DataTable({
               "processing": true,
               "serverSide": true,
               "ajax": "{{route('client.showTable')}}",
@@ -164,5 +148,14 @@
       });
 
 
+  </script>
+
+  <script>/*
+  swal({
+      "timer":1800,
+      "title":"Título",
+      "text":"Notificación Básica",
+      "showConfirmButton":false
+  });*/
   </script>
 @stop

@@ -176,7 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-
+        'Collective\Html\HtmlServiceProvider',
     ],
 
     /*
@@ -227,6 +227,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Form' => 'Collective\Html\FormFacade',
+        'Html' => 'Collective\Html\HtmlFacade',
 
     ],
 

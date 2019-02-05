@@ -3,7 +3,7 @@
 @include('client.modal')
 <section class="content-header">
   <h1>
-    Clinte
+    Cliente
     <small>{{$client->id}}</small>
   </h1>
 </section>
@@ -22,11 +22,11 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="phone1">Teléfono 1</label>
-      <input type="numeric" class="form-control" name="phone1" value="{{$client->data_contact->phone1}}" readonly id="phone1">
+      <input type="number" class="form-control" name="phone1" value="{{$client->data_contact->phone1}}" readonly id="phone1">
     </div>
     <div class="form-group col-md-6">
       <label for="phone2">Teléfono 2</label>
-      <input type="numeric" name="phone2" class="form-control" value="{{$client->data_contact->phone2}}" readonly id="phone2">
+      <input type="number" name="phone2" class="form-control" value="{{$client->data_contact->phone2}}" readonly id="phone2">
     </div>
   </div>
 
@@ -37,14 +37,14 @@
     </div>
     <div class="form-group col-md-6">
       <label for="visits">Visitas</label>
-      <input type="numeric" name="visits" class="form-control" value="{{$client->visits}}" readonly id="visits">
+      <input type="number" name="visits" class="form-control" value="{{$client->visits}}" readonly id="visits">
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="prestige">Prestigio</label>
-      <input type="numeric" class="form-control" name="prestige" value="{{$client->prestige}}" readonly id="prestige">
+      <input type="number" class="form-control" name="prestige" value="{{$client->prestige}}" readonly id="prestige">
     </div>
     <div class="form-group col-md-6">
       <label for="comments">Comentarios</label>
