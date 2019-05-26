@@ -119,6 +119,7 @@ class ClientController extends Controller
     public function destroy($id)
     {
         data_contact::destroy($id);
+
         return view('client.index');
     }
 }

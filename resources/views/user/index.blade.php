@@ -7,44 +7,41 @@
 
 @section('content-header')
   <h1>
-    Clintes
-    <small>Administración de clientes</small>
+    Usuarios
+    <small>Administración de usuarios</small>
   </h1>
 @stop
 
 @section('content')
-      <h2>Lista de clientes</h2>
+      <h2>Lista de usuarios</h2>
 
 
-        <a href="{{ url('client/create') }}" class="btn btn-success"
+        <a href="{{ url('user/create') }}" class="btn btn-success"
         style="Position:Absolute; left:93%; top:13%;">
           <i class="fas fa-plus-square"></i> Agregar</a>
 
 
       <div class="box-body">
-          <table id="clients_table" class="table table-striped table-bordered" style="width:100%">
+          <table id="users_table" class="table table-striped table-bordered" style="width:100%">
           <thead>
               <tr>
                   <th width="10px">Id</th>
                   <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Teléfono 1</th>
-                  <th>Visitas</th>
+                  <th>Correo</th>
                   <th width="120px">Acciones</th>
               </tr>
           </thead>
       </table>
       </div>
 
-
-      @include('client.modal')
+      @include('user.modal')
 
 @stop
 
 @section('adminlte_js')
   <script>
 
-  function add(id)
+  /*function add(id)
   {
     var csrf_token=$('meta[name="csrf-token"]').attr('content');
     swal({
@@ -71,28 +68,16 @@
       };
     });
   }
-
+*/
   $('#edit').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget)
-      var id = button.data('idclient')
-      var name = button.data('nameclient')
-      var lastname = button.data('lastnameclient')
-      var phone1 = button.data('phone1client')
-      var phone2 = button.data('phone2client')
-      var email = button.data('emailclient')
-      var prestige = button.data('prestigeclient')
-      var comments = button.data('commentsclient')
-      var data_id = button.data('iddata')
+      var id = button.data('iduser')
+      var name = button.data('nameuser')
+      var email = button.data('emailuser')
       var modal = $(this)
-      modal.find('.modal-body #cli_id').val(id);
+      modal.find('.modal-body #user_id').val(id);
       modal.find('.modal-body #name').val(name);
-      modal.find('.modal-body #lastname').val(lastname);
-      modal.find('.modal-body #phone1').val(phone1);
-      modal.find('.modal-body #phone2').val(phone2);
       modal.find('.modal-body #email').val(email);
-      modal.find('.modal-body #prestige').val(prestige);
-      modal.find('.modal-body #comments').val(comments);
-      modal.find('.modal-body #data_id').val(data_id);
   });
 
 
@@ -108,16 +93,14 @@
 
   <script>
       $(document).ready(function() {
-          $('#clients_table').DataTable({
+          $('#users_table').DataTable({
               "processing": true,
               "serverSide": true,
-              "ajax": "{{route('client.showTable')}}",
+              "ajax": "{{route('user.showTable')}}",
               "columns": [
                   {data: 'id'},
                   {data: 'name'},
-                  {data: 'lastname'},
-                  {data: 'phone1'},
-                  {data: 'visits'},
+                  {data: 'email'},
                   {data: 'btn'}
               ],
               "language": {
@@ -148,14 +131,5 @@
       });
 
 
-  </script>
-
-  <script>/*
-  swal({
-      "timer":1800,
-      "title":"Título",
-      "text":"Notificación Básica",
-      "showConfirmButton":false
-  });*/
   </script>
 @stop

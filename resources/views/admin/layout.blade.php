@@ -94,8 +94,8 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Lista de usuarios</a></li>
-            <li><a href="#">Crear usuario</a></li>
+            <li><a href="{{ url('user') }}">Lista de usuarios</a></li>
+            <li><a href="{{ url('user/create') }}">Crear usuario</a></li>
           </ul>
         </li>
 
@@ -118,8 +118,8 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Lista de proveedores</a></li>
-            <li><a href="#">Agregar proveedor</a></li>
+            <li><a href="{{ url('provider') }}">Lista de proveedores</a></li>
+            <li><a href="{{ url('provider/create') }}">Agregar proveedor</a></li>
           </ul>
         </li>
 
@@ -130,8 +130,8 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Lista de servicios</a></li>
-            <li><a href="#">Agregar servicios</a></li>
+            <li><a href="{{ url('service') }}">Lista de servicios</a></li>
+            <li><a href="{{ url('service/create') }}">Agregar servicios</a></li>
           </ul>
         </li>
 
@@ -142,26 +142,17 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Lista de eventos</a></li>
-            <li><a href="#">Agregar evento</a></li>
+            <li><a href="{{ url('event') }}">Lista de eventos</a></li>
+            <li><a href="{{ url('event/create') }}">Agregar evento</a></li>
           </ul>
         </li>
 
         <li class="treeview">
-          <a href="#"><i class="far fa-handshake"></i> <span>Anticipos</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Lista de anticipos</a></li>
-            <li><a href="#">Agregar anticipo</a></li>
-          </ul>
+          <li><a href="{{ url('prepaid') }}"><i class="far fa-handshake"></i> Anticipos</a></li>
         </li>
 
         <li class="treeview">
-          <a href="#"><i class="fa fa-calendar-alt"></i> <span>Calendario</span>
-          </a>
+          <li><a href="{{ url('calendar') }}"><i class="fa fa-calendar-alt"></i> <span>Calendario</span></a></li>
         </li>
       </ul>
       <!-- /.sidebar-menu -->

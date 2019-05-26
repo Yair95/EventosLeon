@@ -23,12 +23,32 @@ Route::get('home', function(){
   return view('admin.dashboard');
 });
 
+// Users
+Route::resource('user','UserController');
+Route::get('showTableU','UserController@showTable')->name('user.showTable');
+
 /*Route::get('/client', 'ClientController@index')->name('client');
 Route::get('/client', 'ClientController@create')->name('client_create');*/
 Route::resource('client','ClientController');
-Route::get('showTable','ClientController@showTable')->name('client.showTable');
+Route::get('showTableC','ClientController@showTable')->name('client.showTable');
 /*Route::get('client/showT',function(){
   return DataTables::eloquent(Client::query())->make(true);
 });*/
 
 Route::resource('data_contact','DataContactController');
+
+//Providers
+Route::resource('provider','ProviderController');
+Route::get('showTable','ProviderController@showTable')->name('provider.showTable');
+
+//Services
+Route::resource('service','ServiceController');
+Route::get('showTable','ServiceController@showTable')->name('service.showTable');
+
+//Events
+Route::resource('event','EventController');
+Route::get('showTable','EventController@showTable')->name('event.showTable');
+
+//Preapids
+Route::resource('prepaid','PrepaidController');
+Route::get('showTable','PrepaidController@showTable')->name('prepaid.showTable');
