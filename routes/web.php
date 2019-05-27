@@ -43,7 +43,7 @@ Route::get('showTableP','ProviderController@showTableP')->name('provider.showTab
 
 //Services
 Route::resource('service','ServiceController');
-Route::get('showTable','ServiceController@showTable')->name('service.showTable');
+Route::get('showTableS','ServiceController@showTableS')->name('service.showTableS');
 
 //Events
 Route::resource('event','EventController');

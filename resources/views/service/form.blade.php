@@ -1,11 +1,15 @@
 <div class="form-group">
   <div class="form-group col-md-6">
+    <label for="service_name">Nombre del servicio</label>
+    <input type="text" class="form-control" name="service_name" id="service_name">
+  </div>
+  <div class="form-group col-md-6">
     <label for="description">Descripción</label>
     <input type="text" class="form-control" name="description" id="description">
   </div>
   <div class="form-group col-md-6">
-  <label for="cost">Costo</label>
-  <input type="number" class="form-control" name="cost" id="cost">
+    <label for="cost">Costo</label>
+    <input type="number" class="form-control" name="cost" id="cost">
   </div>
 </div>
 
