@@ -23,14 +23,14 @@ class ClientController extends Controller
     public function showTable()
     {
       $clients = DB::table('clients')
-        ->select('clients.*','data_contacts.*')
+        ->select('clients.id as client_id', 'clients.*', 'data_contacts.id as data_id', 'data_contacts.*')
         ->join('data_contacts', 'data_contacts.id', '=', 'clients.data_contact_id')
         ->get();
 
         return Datatables::of($clients)
-        ->addColumn('btn', 'client.actions')
+        ->addColumn('btn', 'client.partials.buttons')
         ->rawColumns(['btn'])
-      ->make(true);
+        ->make(true);
     }
 
     /**
@@ -57,8 +57,16 @@ class ClientController extends Controller
         $client->data_contact_id = $data->id;
         $client->save();
 
-        $clients = Client::all();
-        return view('client.index');
+        // $clients = Client::all();
+
+        $msg = [
+            'title' => 'Creado!',
+            'text' => 'Cliente creado exitosamente.',
+            'icon' => 'success'
+        ];
+
+        return redirect('client')->with('message', $msg);
+        // return view('client.index');
     }
 
     /**
@@ -106,8 +114,13 @@ class ClientController extends Controller
         $data->email = $request->email;
         $data->save();
 
+        $msg = [
+            'title' => 'Modificado!',
+            'text' => 'Cliente modificado exitosamente.',
+            'icon' => 'success'
+        ];
 
-        return view('client.index');
+        return redirect('client')->with('message', $msg);
     }
 
     /**
