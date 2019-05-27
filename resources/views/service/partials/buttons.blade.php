@@ -2,11 +2,11 @@
   <i class="fa fa-eye"></i></a>
 
 <button class="btn btn-primary btn-sm"
-  data-idservice="{{$service_id}}"
-  data-service_name="{{$service_name}}"
+  data-idservice="{{$id}}"
+  data-service_name="{{$name}}"
   data-description="{{$description}}"
   data-cost="{{$cost}}"
-  data-provider_name="{{$provider_name}}"
+  data-provider_id="{{$provider_id}}"
   data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i></button>
 
   <a service_id="{{ $service_id }}" class="btn btn-danger btn-sm status-service">

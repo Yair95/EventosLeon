@@ -7,8 +7,11 @@
 
     <form action="{{url('event')}}" method="post">
         {{csrf_field()}}
-        @include('event.form')
-        <div class="form-group col-md-12">
+        @include('event.partials.form')
+        <div class="form-group col-md-6">
+            <a href="{{ route('service.index') }}" class="btn btn-info">Servicios adicionales</a>
+        </div>
+        <div class="form-group col-md-6">
             <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
     </form>

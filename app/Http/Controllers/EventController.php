@@ -37,7 +37,7 @@ class EventController extends Controller
     public function showTableESC(Request $request)
     {
         //Tabla temporal para events - servies??
-        dd($request);
+        dd($request->service_id);
         $data = TemporaryEventService::create($request->all());
         /*$temporary_service = New TemporaryEventService;
         $temporary_product->price_id = $price_id;

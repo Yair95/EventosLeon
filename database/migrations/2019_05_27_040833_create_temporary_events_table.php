@@ -18,7 +18,7 @@ class CreateTemporaryEventsTable extends Migration
             $table->integer('client_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->decimal('total',8,2);
-            $table->decimal('additional_hour',8,2);
+            $table->decimal('additional_hour',8,2)->nullable();
             $table->decimal('additional_people',8,2);
             $table->dateTime('date_start');
             $table->dateTime('date_end');

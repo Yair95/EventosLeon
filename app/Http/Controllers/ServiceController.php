@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Service;
+use App\Provider;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -16,14 +17,19 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('service.index');
+        $providers = Provider::select('*')->get();
+        return view('service.index')->with('providers', $providers);
     }
 
     public function showTableS()
     {
         $services = DB::table('services')
-            ->select( 'services.*')
-            // ->join('services.data_contact_id')
+            ->select(
+                'services.id as service_id', 'services.name as service_name', 'services.*',
+                'providers.id as provider_id', 'data_contacts.name as provider_name'
+            )
+            ->join('providers', 'providers.id', '=', 'services.provider_id')
+            ->join('data_contacts', 'providers.data_contact_id', '=', 'data_contacts.id')
             ->get();
 
         return Datatables::of($services)
@@ -39,7 +45,8 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('service.create');
+        $providers = Provider::select('*')->get();
+        return view('service.create')->with('providers', $providers);
     }
 
     /**
@@ -50,21 +57,12 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //$data = data_contact::create($request->all());
-        //Sigo trabajando en esto
-        $service = New Service;
-        $service->service_name = $request->service_name;
-        $service->description = $request->description;
-        $service->cost = $request->cost;
-        $service->provider_name = $request->provider_name;
-        $service->save();
-
+        Service::create($request->all());
         $msg = [
             'title' => 'Creado!',
             'text' => 'Servicio creado exitosamente.',
             'icon' => 'success'
         ];
-
         return redirect('service')->with('message', $msg);
     }
 
@@ -76,7 +74,9 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        return view('service.show')->with('service', $service);
+        //dd($service->provider->data_contact);
+        $providers = Provider::select('*')->get();
+        return view('service.show')->with('service', $service)->with('providers', $providers);
     }
 
     /**
@@ -97,16 +97,15 @@ class ServiceController extends Controller
      * @param  \App\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request)
     {
-      $service = service::findOrFail($request->id);
-      $service->service->update($request->all());
+      $service = Service::findOrFail($request->id);
+      $service->update($request->all());
       $msg = [
           'title' => 'Modificado!',
           'text' => 'Servicio modificado exitosamente.',
           'icon' => 'success'
       ];
-
     return redirect('service')->with('message', $msg);
     }
 
@@ -118,6 +117,14 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        dd($service);
+        Service::destroy($service->id);
+        $msg = [
+            'title' => 'Eliminado!',
+            'text' => 'Servicio eliminado exitosamente.',
+            'icon' => 'success'
+        ];
+
+        return response()->json($msg);
     }
 }

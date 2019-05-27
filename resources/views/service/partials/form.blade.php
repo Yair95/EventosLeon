@@ -1,7 +1,7 @@
 <div class="form-group">
   <div class="form-group col-md-6">
-    <label for="service_name">Nombre del servicio</label>
-    <input type="text" class="form-control" name="service_name" id="service_name">
+    <label for="name">Nombre del servicio</label>
+    <input type="text" class="form-control" name="name" id="name" required>
   </div>
   <div class="form-group col-md-6">
     <label for="description">Descripción</label>
@@ -9,18 +9,17 @@
   </div>
   <div class="form-group col-md-6">
     <label for="cost">Costo</label>
-    <input type="number" class="form-control" name="cost" id="cost">
+    <input type="number" class="form-control" name="cost" id="cost" required>
   </div>
 </div>
 
 <div class="form-group">
   <div class="form-group col-md-6">
     <label for="provider_id">Proveedor</label>
-    <select class="form-control" name="provider_id" id="provider_id">
-     <option value="1">Pancho</option>
-     <option value="2">Emanuel</option>
-     <option value="3">José</option>
-     <option value="4">Fatima</option>
+    <select class="form-control" name="provider_id" id="provider_id" required>
+        @foreach($providers as $provider)
+            <option value="{{$provider->id}}">{{$provider->data_contact->name}}</option>
+        @endforeach
     </select>
   </div>
 </div>

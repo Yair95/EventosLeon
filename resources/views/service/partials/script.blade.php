@@ -37,16 +37,16 @@ table = $('#services_table').DataTable({
 $('#edit').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget)
     var idservice = button.data('idservice')
-    var service_name = button.data('service_name')
+    var name = button.data('service_name')
     var description = button.data('description')
     var cost = button.data('cost')
-    var provider_name = button.data('provider_name')
+    var provider_id = button.data('provider_id')
     var modal = $(this)
     modal.find('.modal-body #id').val(idservice);
-    modal.find('.modal-body #service_name').val(service_name);
+    modal.find('.modal-body #name').val(name);
     modal.find('.modal-body #description').val(description);
     modal.find('.modal-body #cost').val(cost);
-    modal.find('.modal-body #provider_name').val(provider_name);
+    modal.find('.modal-body #provider_id').val(provider_id);
 });
 
 //DELETE
@@ -74,7 +74,6 @@ $('body').delegate('.status-service','click',function(){
           }
         });
     });
-
 
 //SWETALERT
 @if (Session::has('message'))
