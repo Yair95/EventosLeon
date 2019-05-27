@@ -119,7 +119,12 @@ class ClientController extends Controller
     public function destroy($id)
     {
         data_contact::destroy($id);
+        $msg = [
+            'title' => 'Eliminado!',
+            'text' => 'Proveedor eliminado exitosamente.',
+            'icon' => 'success'
+        ];
 
-        return view('client.index');
+        return response()->json($msg);
     }
 }

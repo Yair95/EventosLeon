@@ -39,7 +39,7 @@ Route::resource('data_contact','DataContactController');
 
 //Providers
 Route::resource('provider','ProviderController');
-Route::get('showTable','ProviderController@showTable')->name('provider.showTable');
+Route::get('showTableP','ProviderController@showTableP')->name('provider.showTableP');
 
 //Services
 Route::resource('service','ServiceController');
