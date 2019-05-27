@@ -48,6 +48,7 @@ Route::get('showTable','ServiceController@showTable')->name('service.showTable')
 //Events
 Route::resource('event','EventController');
 Route::get('showTable','EventController@showTable')->name('event.showTable');
+Route::get('showTableESC','EventController@showTableESC')->name('event.showTableESC');
 
 //Preapids
 Route::resource('prepaid','PrepaidController');

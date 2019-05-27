@@ -62,9 +62,9 @@ desired effect
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>NAV</b></span>
+      <span class="logo-mini"><b>EL</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Navegación</b></span>
+      <span class="logo-lg"><b>Eventos D' León</b></span>
     </a>
 
     <!-- Header Navbar -->
@@ -152,7 +152,7 @@ desired effect
         </li>
 
         <li class="treeview">
-          <li><a href="{{ url('prepaid') }}"><i class="far fa-handshake"></i> Anticipos</a></li>
+          <li><a href="{{ url('prepaid') }}"><i class="fa fa-handshake"></i> <span>Anticipos</span></a></li>
         </li>
 
         <li class="treeview">
