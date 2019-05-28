@@ -1,22 +1,26 @@
 <div class="form-group">
     <div class="form-group col-md-6">
-        <label for="date_time_start">Fecha y hora de inicio</label>
-        <input type="date" class="form-control" name="date_time_start" id="date_time_start" required>
+        <label for="date_start">Fecha y hora de inicio</label>
+        <input type="datetime-local" class="form-control" name="date_start" id="date_start" required>
     </div>
     <div class="form-group col-md-6">
-        <label for="date_time_end">Fecha y hora de terminación</label>
-        <input type="date" class="form-control" name="date_time_end" id="date_time_end" required>
+        <label for="date_end">Fecha y hora de terminación</label>
+        <input type="datetime-local" class="form-control" name="date_end" id="date_end" required>
         </div>
 </div>
 
 <div class="form-group">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
         <label for="aditional_hour">Precio por hora adicional</label>
         <input type="number" class="form-control" name="aditional_hour" id="aditional_hour">
     </div>
-        <div class="form-group col-md-6">
-        <label for="aditonal_person">Precio por persona adicional</label>
-    <input type="number" class="form-control" name="aditonal_person" id="aditonal_person" required>
+    <div class="form-group col-md-4">
+        <label for="people">Cantidad de personas</label>
+        <input type="number" class="form-control" name="people" id="people">
+    </div>
+    <div class="form-group col-md-4">
+        <label for="additional_people">Precio por persona adicional</label>
+        <input type="number" class="form-control" name="additional_people" id="additional_people" required>
     </div>
 </div>
 
@@ -26,7 +30,7 @@
         <input type="number" class="form-control" name="discount" id="discount">
     </div>
     <div class="form-group col-md-6">
-        <label for="subtotal">Sub total</label>
+        <label for="subtotal">Subtotal</label>
         <input type="number" class="form-control" name="subtotal" id="subtotal" required>
     </div>
 </div>
@@ -34,7 +38,7 @@
 <div class="form-group">
     <div class="form-group col-md-6">
         <label for="date">Fecha y hora de entrega de anticipo</label>
-        <input type="date" class="form-control" name="date" id="date" required>
+        <input type="datetime-local" class="form-control" name="date" id="date" required>
     </div>
     <div class="form-group col-md-6">
         <label for="amount">Cantidad a anticipar</label>
@@ -51,7 +55,6 @@
             @endforeach
         </select>
     </div>
-
 </div>
 
 <div class="form-group">

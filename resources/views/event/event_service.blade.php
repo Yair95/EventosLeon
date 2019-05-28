@@ -38,12 +38,26 @@
             </table>
         </div>
 
+        <div class="form-group">
+            <div class="form-group col-md-6">
+                <label for="subtotal">Costo sin servicios</label>
+                <input type="number" class="form-control" readonly name="subtotal" id="subtotal" value={{ $data->total }}>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="total">Total</label>
+                <input type="number" class="form-control" readonly name="total" id="total">
+            </div>
+        </div>
+
+        <input type="hidden" name="event_id" id="event_id" value="{{ $data->id }}">
+        @include('event.partials.data_event')
+
         <div class="form-group col-md-6">
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-primary">Continuar</button>
         </div>
     </form>
 @endsection
 
 @section('adminlte_js')
-    @include('event.partials.script_create')
+    @include('event.partials.script_service')
 @stop

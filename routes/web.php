@@ -47,8 +47,11 @@ Route::get('showTableS','ServiceController@showTableS')->name('service.showTable
 
 //Events
 Route::resource('event','EventController');
-Route::get('showTable','EventController@showTable')->name('event.showTable');
+Route::get('showTableE','EventController@showTableE')->name('event.showTableE');
 Route::get('showTableESC','EventController@showTableESC')->name('event.showTableESC');
+Route::post('eventservice','EventController@eventservice')->name('event.eventservice');
+Route::delete('deleteTemporalService','EventController@deleteTemporalService')->name('event.deleteTemporalService');
+Route::delete('deleteServiceTemporal','EventController@deleteServiceTemporal')->name('event.deleteServiceTemporal');
 
 //Preapids
 Route::resource('prepaid','PrepaidController');

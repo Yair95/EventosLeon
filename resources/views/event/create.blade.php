@@ -5,14 +5,11 @@
         <h1>Eventos<small>Agregar Evento</small></h1>
     </section>
 
-    <form action="{{url('event')}}" method="post">
+    <form action="{{ route('event.eventservice') }}" method="post">
         {{csrf_field()}}
         @include('event.partials.form')
         <div class="form-group col-md-6">
-            <a href="{{ route('service.index') }}" class="btn btn-info">Servicios adicionales</a>
-        </div>
-        <div class="form-group col-md-6">
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-primary">Continuar</button>
         </div>
     </form>
 @endsection

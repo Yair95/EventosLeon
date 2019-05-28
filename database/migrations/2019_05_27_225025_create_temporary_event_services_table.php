@@ -18,7 +18,7 @@ class CreateTemporaryEventServicesTable extends Migration
             $table->integer('event_id')->unsigned();
             $table->integer('service_id')->unsigned();
             $table->timestamps();
-            $table->foreign('event_id')->references('id')->on('events')
+            $table->foreign('event_id')->references('id')->on('temporary_events')
               ->onDelete('cascade')
               ->onUpdate('cascade');
           $table->foreign('service_id')->references('id')->on('services')

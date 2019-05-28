@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Event;
 use App\Client;
 use App\Service;
+use App\TemporaryEvent;
+use App\EventService;
 use App\TemporaryEventService;
 use Illuminate\Http\Request;
 use DB;
@@ -22,6 +24,33 @@ class EventController extends Controller
         return view('event.index');
     }
 
+    public function showTableE()
+    {
+        $events = DB::table('events')
+            ->select(
+                'events.id as event_id', 'events.*',
+                'clients.id as client_id', 'data_contacts.name as client_name'
+            )
+            ->join('clients', 'clients.id', '=', 'events.client_id')
+            ->join('data_contacts', 'clients.data_contact_id', '=', 'data_contacts.id')
+            ->get();
+
+        for($i=0; $i<$events->count(); $i++)
+        {
+          if($events[$i]->status == 0)
+            $events[$i]->status = "Finalizado";
+          else if($events[$i]->status == 1)
+            $events[$i]->status = "Ahora mismo";
+            else if($events[$i]->status == 2)
+              $events[$i]->status = "Próximo";
+        }
+
+        return Datatables::of($events)
+            ->addColumn('btn', 'event.partials.buttons')
+            ->rawColumns(['btn'])
+          ->make(true);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -30,37 +59,63 @@ class EventController extends Controller
     public function create()
     {
         $clients = Client::select('*')->get();
+        return view('event.create')->with('clients', $clients);
+    }
+
+    public function eventservice(Request $request)
+    {
+        //dd($request);
+        DB::table('temporary_events')->delete();
+        DB::table('temporary_event_services')->delete();
+        $status = 0;// 0 = terminado, 1=ejecucion, 2=pendiente
+        if($request->date_end == now()->toDateString())
+            $status = 1;
+        else if(($request->date_end > now()->toDateString()))
+            $status = 2;
+
+        $temporary_event = (new TemporaryEvent)->fill($request->all());
+        $temporary_event->status = $status;
+        $temporary_event->user = auth()->user()->email;
+        $temporary_event->save();
+
         $services = Service::select('*')->get();
-        return view('event.create')->with('clients', $clients)->with('services', $services);
+        //dd($temporary_event);
+        return view('event.event_service')->with('data', $temporary_event)->with('services', $services);
     }
 
     public function showTableESC(Request $request)
     {
-        //Tabla temporal para events - servies??
-        dd($request->service_id);
         $data = TemporaryEventService::create($request->all());
-        /*$temporary_service = New TemporaryEventService;
-        $temporary_product->price_id = $price_id;
-        $temporary_product->capture_id = $request->capture_id;
-        $temporary_product->quantity = $request->quantity;
-        $temporary_product->total = $request->total;
-        $temporary_product->extra = $request->extra;
-        $temporary_product->save();*/
-        /*$toTable = DB::table('temporary_event_services')
+        $services = DB::table('temporary_event_services')
             ->select(
-                'temporary_capture_products.id as temporary_id', 'temporary_capture_products.quantity', 'temporary_capture_products.extra', 'temporary_capture_products.total',
-                'prices.id as price_id', 'prices.price', 'prices.unity',
-                'products.id as product_id', 'products.concept'
+                'temporary_event_services.id as temporary_event_service_id', 'temporary_event_services.*',
+                'services.id as service_id', 'services.name as service_name', 'services.*',
+                'providers.id as provider_id', 'data_contacts.name as provider_name'
             )
-            ->where('temporary_capture_products.capture_id', '=', $request->capture_id)
-            ->join('prices', 'prices.id', '=', 'temporary_capture_products.price_id')
-            ->join('products', 'products.id', '=', 'prices.product_id')
+            ->where('temporary_event_services.event_id', '=', $request->event_id)
+            ->join('services', 'temporary_event_services.service_id', '=', 'services.id')
+            ->join('providers', 'providers.id', '=', 'services.provider_id')
+            ->join('data_contacts', 'providers.data_contact_id', '=', 'data_contacts.id')
             ->get();
 
-        return Datatables::of($toTable)
-            ->addColumn('btn', 'capture.partials.buttons_product')
+        return Datatables::of($services)
+            ->addColumn('btn', 'event.partials.buttons_services')
             ->rawColumns(['btn'])
-            ->make(true);*/
+          ->make(true);
+    }
+
+    public function deleteServiceTemporal(Request $request)
+    {
+        //dd($request);
+        $temporalService = TemporaryEventService::findOrFail($request->id);
+        $temporalService->delete();
+        $msg = [
+            'title' => 'Eliminado!',
+            'text' => 'Se removió el servicio del evento',
+            'icon' => 'success'
+        ];
+
+        return response()->json($msg);
     }
 
     /**
@@ -71,7 +126,33 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //{{ Auth::user()->email }}
+        //dd($request);
+        $event = Event::create($request->all());
+        //Guardar productos_capture
+        $temporal_services = DB::table('temporary_event_services')
+          ->select('temporary_event_services.*')
+          ->where('event_id', '=', $request->temporary_event_id)
+          ->get();
+
+          for($i=0; $i<$temporal_services->count(); $i++)
+          {
+              $event_service = New EventService;
+              $event_service->event_id = $event->id;
+              $event_service->service_id = $temporal_services[$i]->service_id;
+              $event_service->save();
+          }
+        //Borramos temporales
+        DB::table('temporary_events')->delete();
+        DB::table('temporary_event_services')->delete();
+
+        $msg = [
+              'title' => 'Capturado correctamente!',
+              'text' => 'Se creo el evento correctamente',
+              'icon' => 'success'
+          ];
+
+        return view('event.index');
     }
 
     /**

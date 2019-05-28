@@ -20,7 +20,6 @@
           <table id="events_table" class="table table-striped table-bordered" style="width:100%">
           <thead>
               <tr>
-                  <th width="10px">Id</th>
                   <th>Cliente</th>
                   <th>Costo</th>
                   <th>Fecha de inicio</th>
@@ -35,4 +34,5 @@
 @stop
 
 @section('adminlte_js')
+    @include('event.partials.script')
 @stop
