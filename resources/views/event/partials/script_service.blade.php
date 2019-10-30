@@ -78,7 +78,7 @@ $('body').delegate('.delete-service','click',function(){
         }).then((willDelete) => {
           if (willDelete) {
             $.ajax({
-                url: "{{route('event.deleteServiceTemporal')}}",
+                url: "{{route('event.deleteTemporalService')}}",
                 headers: {'X-CSRF-TOKEN': csrf_token},
                 type: 'DELETE',
                 dataType: 'json',

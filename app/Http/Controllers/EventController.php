@@ -22,7 +22,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('event.index');
+        $clients = Client::select('*')->get();
+        $services = Service::select('*')->get();
+        return view('event.index')->with('services',$services)->with('clients',$clients);
     }
 
     public function showTableE()
@@ -105,9 +107,8 @@ class EventController extends Controller
           ->make(true);
     }
 
-    public function deleteServiceTemporal(Request $request)
+    public function deleteTemporalService(Request $request)
     {
-        //dd($request);
         $temporalService = TemporaryEventService::findOrFail($request->id);
         $temporalService->delete();
         $msg = [
@@ -177,7 +178,30 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $prepaid = Prepaid::where('event_id',$event->id)->first();
+        if($prepaid->status == 1)
+            $prepaid->status = "¨Pendiente";
+        else
+            $prepaid->status = "Anticipado";
+        $client = Client::where('id', $event->client_id)->first();
+        return view('event.show')->with('event',$event)->with('prepaid', $prepaid)->with('client', $client);
+    }
+
+    public function showTableESS(Request $request)
+    {
+        $services = DB::table('event_services')
+            ->select(
+                'services.id as service_id', 'services.name as service_name', 'services.*',
+                'providers.id as provider_id', 'data_contacts.name as provider_name'
+            )
+            ->join('services', 'event_services.service_id', '=', 'services.id')
+            ->join('providers', 'providers.id', '=', 'services.provider_id')
+            ->join('data_contacts', 'providers.data_contact_id', '=', 'data_contacts.id')
+            ->where('event_services.event_id', $request->event_id)
+            ->get();
+
+        return Datatables::of($services)
+            ->make(true);
     }
 
     /**
@@ -186,10 +210,45 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    /*public function edit(Event $event)
     {
-        //
-    }
+        //dd($event);
+        DB::table('temporary_events')->delete();
+        DB::table('temporary_event_services')->delete();
+        $service = DB::table('event_services')
+            ->select(
+                'services.id as service_id', 'services.name as service_name', 'services.*',
+                'providers.id as provider_id', 'data_contacts.name as provider_name'
+            )
+            ->join('services', 'event_services.service_id', '=', 'services.id')
+            ->join('providers', 'providers.id', '=', 'services.provider_id')
+            ->join('data_contacts', 'providers.data_contact_id', '=', 'data_contacts.id')
+            ->where('event_services.event_id', $event->id)
+            ->get();
+
+            //dd($event);
+            $temporary_event = TemporaryEvent::create($event->all());
+            $temporary_event = (new TemporaryEvent)->fill($event->all());
+            $temporary_event->save();
+
+        for($i=0; $i<$service->count(); $i++)
+        {
+            $event_service = New TemporaryEventService;
+            $event_service->event_id = $temporary_event->id;
+            $event_service->service_id = $service[$i]->service_id;
+            $event_service->save();
+        }
+
+        $client = Client::where('id', $event->client_id)->first();
+        $clients = Client::select('*')->get();
+        $services = Service::select('*')->get();
+
+        return view('event.edit')
+            ->with('event',$event)
+            ->with('client', $client)
+            ->with('clients', $clients)
+            ->with('services', $services);
+    }*/
 
     /**
      * Update the specified resource in storage.
@@ -211,6 +270,14 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        //Event::destroy($event->id);
+        $event->delete();
+        $msg = [
+            'title' => 'Eliminado!',
+            'text' => 'Evento eliminado exitosamente.',
+            'icon' => 'success'
+        ];
+
+        return response()->json($msg);
     }
 }

@@ -129,9 +129,9 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Client $client)
     {
-        data_contact::destroy($id);
+        data_contact::destroy($client->data_contact->id);
         $msg = [
             'title' => 'Eliminado!',
             'text' => 'Proveedor eliminado exitosamente.',

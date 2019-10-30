@@ -37,28 +37,38 @@ table = $('#events_table').DataTable({
 //EDIT
 $('#edit').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget)
-    var idevent = button.data('idevent')
-    var name = button.data('nameevent')
-    var lastname = button.data('lastnameevent')
-    var phone1 = button.data('phone1event')
-    var phone2 = button.data('phone2event')
-    var email = button.data('emailevent')
+    var id = button.data('id')
+    var client_id = button.data('client_id')
+    var total = button.data('total')
+    var additional_hour = button.data('additional_hour')
+    var additional_people = button.data('additional_people')
+    var date_start = button.data('date_start')
+    var date_end = button.data('date_end')
+    var discount = button.data('discount')
+    var status = button.data('status')
+    var people = button.data('people')
     var modal = $(this)
-    modal.find('.modal-body #id').val(idevent);
-    modal.find('.modal-body #name').val(name);
-    modal.find('.modal-body #lastname').val(lastname);
-    modal.find('.modal-body #phone1').val(phone1);
-    modal.find('.modal-body #phone2').val(phone2);
-    modal.find('.modal-body #email').val(email);
+    modal.find('.modal-body #id').val(id);
+    modal.find('.modal-body #client_id').val(client_id);
+    modal.find('.modal-body #total').val(total);
+    modal.find('.modal-body #additional_hour').val(additional_hour);
+    modal.find('.modal-body #additional_people').val(additional_people);
+    modal.find('.modal-body #date_start').val(date_start);
+    modal.find('.modal-body #date_start').val(date_start);
+    modal.find('.modal-body #date_end').val(date_end);
+    modal.find('.modal-body #discount').val(discount);
+    modal.find('.modal-body #status').val(status);
+    modal.find('.modal-body #people').val(people);
 });
 
 //DELETE
 $('body').delegate('.status-event','click',function(){
         event_id = $(this).attr('event_id');
+        console.log(event_id);
         var csrf_token=$('meta[name="csrf-token"]').attr('content');
         swal({
             title: "Estás seguro?",
-            text: "Se eliminará el proveedor",
+            text: "Se eliminará el evento",
             icon: "warning",
             buttons: true,
             dangerMode: true,

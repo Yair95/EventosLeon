@@ -5,7 +5,7 @@
               "serverSide": true,
               "ajax": "{{route('client.showTable')}}",
               "columns": [
-                  {data: 'id'},
+                  {data: 'client_id'},
                   {data: 'name'},
                   {data: 'lastname'},
                   {data: 'phone1'},
@@ -60,6 +60,7 @@
       //DELETE
       $('body').delegate('.status-client','click',function(){
               client_id = $(this).attr('client_id');
+              console.log(client_id);
               var csrf_token=$('meta[name="csrf-token"]').attr('content');
               swal({
                   title: "Estás seguro?",

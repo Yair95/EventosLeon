@@ -163,9 +163,6 @@ desired effect
           <li><a href="{{ url('prepaid') }}"><i class="fa fa-handshake"></i> <span>Anticipos</span></a></li>
         </li>
 
-        <li class="treeview">
-          <li><a href="{{ url('calendar') }}"><i class="fa fa-calendar-alt"></i> <span>Calendario</span></a></li>
-        </li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

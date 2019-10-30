@@ -40,6 +40,7 @@ Route::resource('data_contact','DataContactController');
 //Providers
 Route::resource('provider','ProviderController');
 Route::get('showTableP','ProviderController@showTableP')->name('provider.showTableP');
+Route::get('showTablePS','ProviderController@showTablePS')->name('provider.showTablePS');
 
 //Services
 Route::resource('service','ServiceController');
@@ -47,11 +48,11 @@ Route::get('showTableS','ServiceController@showTableS')->name('service.showTable
 
 //Events
 Route::resource('event','EventController');
+Route::delete('deleteTemporalService','EventController@deleteTemporalService')->name('event.deleteTemporalService');
 Route::get('showTableE','EventController@showTableE')->name('event.showTableE');
 Route::get('showTableESC','EventController@showTableESC')->name('event.showTableESC');
+Route::get('showTableESS','EventController@showTableESS')->name('event.showTableESS');
 Route::post('eventservice','EventController@eventservice')->name('event.eventservice');
-Route::delete('deleteTemporalService','EventController@deleteTemporalService')->name('event.deleteTemporalService');
-Route::delete('deleteServiceTemporal','EventController@deleteServiceTemporal')->name('event.deleteServiceTemporal');
 
 //Preapids
 Route::resource('prepaid','PrepaidController');

@@ -13,13 +13,9 @@
             <table id="services_provider_table" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Obra</th>
-                        <th>Proveedor</th>
-                        <th>Fecha de captura</th>
-                        <th>Concepto de captura</th>
-                        <th>Total</th>
-                        <th>Comprobante</th>
-                        <th>Acciones</th>
+                        <th>Servicio</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
                     </tr>
                 </thead>
             </table>
@@ -44,4 +40,5 @@
 
 @section('adminlte_js')
     @include('provider.partials.script')
+    @include('provider.partials.script_show')
 @endsection

@@ -76,6 +76,22 @@ class ProviderController extends Controller
         return view('provider.show')->with('provider',$provider);
     }
 
+    public function showTablePS(Request $request)
+    {
+        $services = DB::table('services')
+            ->select(
+                'services.id as service_id', 'services.name as service_name', 'services.*',
+                'providers.id as provider_id', 'data_contacts.name as provider_name'
+            )
+            ->join('providers', 'providers.id', '=', 'services.provider_id')
+            ->join('data_contacts', 'providers.data_contact_id', '=', 'data_contacts.id')
+            ->where('providers.id', $request->provider_id)
+            ->get();
+
+        return Datatables::of($services)
+            ->make(true);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

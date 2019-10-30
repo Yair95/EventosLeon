@@ -52,6 +52,7 @@ $('#edit').on('show.bs.modal', function (event) {
 //DELETE
 $('body').delegate('.status-service','click',function(){
         service_id = $(this).attr('service_id');
+        console.log(service_id);
         var csrf_token=$('meta[name="csrf-token"]').attr('content');
         swal({
             title: "Estás seguro?",
