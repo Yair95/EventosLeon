@@ -387,18 +387,18 @@ class ForecastsController extends Controller
         $demanda_diciembre2020 = $pronostico_diciembre2020 * $factor_estacional_diciembre;
         //dd($demanda_noviembre2020);
 
-        return view('forecast.forecast')->with('enero2018',$enero2018)->with('enero2019',$enero2019)
-        ->with('febrero2018',$febrero2018)->with('febrero2019',$febrero2019)
-        ->with('marzo2018',$marzo2018)->with('marzo2019',$marzo2019)
-        ->with('abril2018',$abril2018)->with('abril2019',$abril2019)
-        ->with('mayo2018',$mayo2018)->with('mayo2019',$mayo2019)
-        ->with('junio2018',$junio2018)->with('junio2019',$junio2019)
-        ->with('julio2018',$julio2018)->with('julio2019',$julio2019)
-        ->with('agosto2018',$agosto2018)->with('agosto2019',$agosto2019)
-        ->with('septiembre2018',$septiembre2018)->with('septiembre2019',$septiembre2019)
-        ->with('octubre2018',$octubre2018)->with('octubre2019',$octubre2019)
-        ->with('noviembre2018',$noviembre2018)->with('noviembre2019',$noviembre2019)
-        ->with('diciembre2018',$diciembre2018)->with('diciembre2019',$diciembre2019);
+        return view('forecast.forecast')->with('enero2018',$enero2018)->with('enero2019',$enero2019)->with('demanda_enero2020',$demanda_enero2020)
+        ->with('febrero2018',$febrero2018)->with('febrero2019',$febrero2019)->with('demanda_febrero2020',$demanda_febrero2020)
+        ->with('marzo2018',$marzo2018)->with('marzo2019',$marzo2019)->with('demanda_marzo2020',$demanda_marzo2020)
+        ->with('abril2018',$abril2018)->with('abril2019',$abril2019)->with('demanda_abril2020',$demanda_abril2020)
+        ->with('mayo2018',$mayo2018)->with('mayo2019',$mayo2019)->with('demanda_diciembre2020',$demanda_diciembre2020)
+        ->with('junio2018',$junio2018)->with('junio2019',$junio2019)->with('demanda_mayo2020',$demanda_mayo2020)
+        ->with('julio2018',$julio2018)->with('julio2019',$julio2019)->with('demanda_junio2020',$demanda_junio2020)
+        ->with('agosto2018',$agosto2018)->with('agosto2019',$agosto2019)->with('demanda_julio2020',$demanda_julio2020)
+        ->with('septiembre2018',$septiembre2018)->with('septiembre2019',$septiembre2019)->with('demanda_agosto2020',$demanda_agosto2020)
+        ->with('octubre2018',$octubre2018)->with('octubre2019',$octubre2019)->with('demanda_septiembre2020',$demanda_septiembre2020)
+        ->with('noviembre2018',$noviembre2018)->with('noviembre2019',$noviembre2019)->with('demanda_octubre2020',$demanda_octubre2020)
+        ->with('diciembre2018',$diciembre2018)->with('diciembre2019',$diciembre2019)->with('demanda_noviembre2020',$demanda_noviembre2020);
     }
 
     /**
