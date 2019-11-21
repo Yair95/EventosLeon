@@ -17,30 +17,70 @@
       google.charts.load('current', {'packages':['corechart']});
 
       // Draw the pie chart for Sarah's pizza when Charts is loaded.
-      //google.charts.setOnLoadCallback(drawSarahChart);
+      google.charts.setOnLoadCallback(drawSarahChart);
+
+      // Draw the pie chart for Sarah's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(draw2019Chart);
 
       // Draw the pie chart for the Anthony's pizza when Charts is loaded.
       google.charts.setOnLoadCallback(drawAnthonyChart);
 
       // Callback that draws the pie chart for Sarah's pizza.
-      /* function drawSarahChart() {
+       function drawSarahChart() {
 
         // Create the data table for Sarah's pizza.
         var data = google.visualization.arrayToDataTable([
-        ['Proyecto', 'Porcentaje'],
-        ['Completado',     {//{$porcentaje[0]}}],
-        ['Restante',      {//{$porcentaje[1]}}]
+        ['Mes', 'Demanda'],
+        ['enero',     {{$enero2018}}],
+        ['febrero',   {{$febrero2018}}],
+        ['marzo',  {{$marzo2018}}],
+        ['abril',  {{$abril2018}}],
+        ['mayo',  {{$mayo2018}}],
+        ['junio',  {{$junio2018}}],
+        ['julio',  {{$julio2018}}],
+        ['agosto',  {{$agosto2018}}],
+        ['septiembre',  {{$septiembre2018}}],
+        ['octubre',  {{$octubre2018}}],
+        ['noviembre',  {{$noviembre2018}}],
+        ['diciembre',  {{$diciembre2018}}]
       ]);
 
-        // Set options for Sarah's pie chart.
-        var options = {title:'Porcentajes de proyecto',
-                       width:550,
-                       height:400};
+      var options = {title:'Eventos mensuales 2018',
+                     width:550,
+                     height:400};
 
         // Instantiate and draw the chart for Sarah's pizza.
         var chart = new google.visualization.PieChart(document.getElementById('Sarah_chart_div'));
         chart.draw(data, options);
-      } */
+      } 
+
+      function draw2019Chart() {
+
+        // Create the data table for Sarah's pizza.
+        var data = google.visualization.arrayToDataTable([
+        ['Mes', 'Demanda'],
+        ['enero',     {{$enero2019}}],
+        ['febrero',   {{$febrero2019}}],
+        ['marzo',  {{$marzo2019}}],
+        ['abril',  {{$abril2019}}],
+        ['mayo',  {{$mayo2019}}],
+        ['junio',  {{$junio2019}}],
+        ['julio',  {{$julio2019}}],
+        ['agosto',  {{$agosto2019}}],
+        ['septiembre',  {{$septiembre2019}}],
+        ['octubre',  {{$octubre2019}}],
+        ['noviembre',  {{$noviembre2019}}],
+        ['diciembre',  {{$diciembre2019}}]
+        ]);
+
+        var options = {title:'Eventos mensuales 2019',
+                    width:550,
+                    height:400};
+
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.PieChart(document.getElementById('2019_chart_div'));
+        chart.draw(data, options);
+    } 
 
       // Callback that draws the pie chart for Anthony's pizza.
       function drawAnthonyChart() {
@@ -77,128 +117,148 @@
 
     <div class="box-body">
         <div class="form-group">
-            <div class="form-group col-md-6">
+            <div class="col-md-12">
                 <h3>Eventos por mes del año 2018</h3>
-                <table id="events_2018" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
+                <div class="col-md-6">
+                    <table id="events_2018" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Mes</th>
+                                <th>Cantidad</th>
+                            </tr>
+                            <tr>
+                                <td>Enero</td>
+                                <td>{{ $enero2018 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Febrero</td>
+                                <td>{{ $febrero2018 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Marzo</td>
+                                <td>{{ $marzo2018 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Abril</td>
+                                <td>{{ $abril2018 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Mayo</td>
+                                <td>{{ $mayo2018 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Junio</td>
+                                <td>{{ $junio2018 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Julio</td>
+                                <td>{{ $julio2018 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Agosto</td>
+                                <td>{{ $agosto2018 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Septiembre</td>
+                                <td>{{ $septiembre2018 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Octubre</td>
+                                <td>{{ $octubre2018 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Noviembre</td>
+                                <td>{{ $noviembre2018 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Diciembre</td>
+                                <td>{{ $diciembre2018 }}</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class="col-md-6">
+                    <table class="columns">
                         <tr>
-                            <th>Mes</th>
-                            <th>Cantidad</th>
+                            <td><div id="Sarah_chart_div" style="border: 1px solid #ccc"></div></td>
                         </tr>
-                        <tr>
-                            <td>Enero</td>
-                            <td>{{ $enero2018 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Febrero</td>
-                            <td>{{ $febrero2018 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Marzo</td>
-                            <td>{{ $marzo2018 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Abril</td>
-                            <td>{{ $abril2018 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Mayo</td>
-                            <td>{{ $mayo2018 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Junio</td>
-                            <td>{{ $junio2018 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Julio</td>
-                            <td>{{ $julio2018 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Agosto</td>
-                            <td>{{ $agosto2018 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Septiembre</td>
-                            <td>{{ $septiembre2018 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Octubre</td>
-                            <td>{{ $octubre2018 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Noviembre</td>
-                            <td>{{ $noviembre2018 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Diciembre</td>
-                            <td>{{ $diciembre2018 }}</td>
-                        </tr>
-                    </thead>
-                </table>
+                    </table>
+                </div>
             </div>
-            
-            <div class="form-group col-md-6">
+
+            <div class="col-md-12">
                 <h3>Eventos por mes del año 2019</h3>
-                <table id="events_2019" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
+                <div class="col-md-6">
+                    <table id="events_2019" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Mes</th>
+                                <th>Cantidad</th>
+                            </tr>
+                            <tr>
+                                <td>Enero</td>
+                                <td>{{ $enero2019 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Febrero</td>
+                                <td>{{ $febrero2019 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Marzo</td>
+                                <td>{{ $marzo2019 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Abril</td>
+                                <td>{{ $abril2019 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Mayo</td>
+                                <td>{{ $mayo2019 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Junio</td>
+                                <td>{{ $junio2019 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Julio</td>
+                                <td>{{ $julio2019 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Agosto</td>
+                                <td>{{ $agosto2019 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Septiembre</td>
+                                <td>{{ $septiembre2019 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Octubre</td>
+                                <td>{{ $octubre2019 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Noviembre</td>
+                                <td>{{ $noviembre2019 }}</td>
+                            </tr>
+                            <tr>
+                                <td>Diciembre</td>
+                                <td>{{ $diciembre2019 }}</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class="col-6">
+                    <table class="columns">
                         <tr>
-                            <th>Mes</th>
-                            <th>Cantidad</th>
+                            <td><div id="2019_chart_div" style="border: 1px solid #ccc"></div></td>
                         </tr>
-                        <tr>
-                            <td>Enero</td>
-                            <td>{{ $enero2019 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Febrero</td>
-                            <td>{{ $febrero2019 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Marzo</td>
-                            <td>{{ $marzo2019 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Abril</td>
-                            <td>{{ $abril2019 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Mayo</td>
-                            <td>{{ $mayo2019 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Junio</td>
-                            <td>{{ $junio2019 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Julio</td>
-                            <td>{{ $julio2019 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Agosto</td>
-                            <td>{{ $agosto2019 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Septiembre</td>
-                            <td>{{ $septiembre2019 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Octubre</td>
-                            <td>{{ $octubre2019 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Noviembre</td>
-                            <td>{{ $noviembre2019 }}</td>
-                        </tr>
-                        <tr>
-                            <td>Diciembre</td>
-                            <td>{{ $diciembre2019 }}</td>
-                        </tr>
-                    </thead>
-                </table>
+                    </table>
+                </div>
             </div>
 
             <div class="form-group col-md-6">
-                <h3>A través del método de regresión líenal y con los datos obtenidos de los respectivos años, se pronostica la siguiente demanda para el año 2020</h3>
+                <h3>Pronóstico de la demanda año 2020</h3>
                 <table id="events_2019" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
