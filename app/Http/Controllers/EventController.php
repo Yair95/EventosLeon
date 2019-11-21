@@ -179,8 +179,15 @@ class EventController extends Controller
     public function show(Event $event)
     {
         $prepaid = Prepaid::where('event_id',$event->id)->first();
+        if($prepaid == null)
+        {
+            $prepaid = new Prepaid;
+            $prepaid->date = $event->date_start;
+            $prepaid->total = '100';
+            $prepaid->status = 1;
+        }
         if($prepaid->status == 1)
-            $prepaid->status = "¨Pendiente";
+            $prepaid->status = "Pendiente";
         else
             $prepaid->status = "Anticipado";
         $client = Client::where('id', $event->client_id)->first();
