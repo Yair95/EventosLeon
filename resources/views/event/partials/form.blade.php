@@ -12,11 +12,11 @@
 <div class="form-group">
     <div class="form-group col-md-4">
         <label for="aditional_hour">Precio por hora adicional</label>
-        <input type="number" class="form-control" name="aditional_hour" id="aditional_hour">
+        <input type="number" class="form-control" name="aditional_hour" id="aditional_hour" required>
     </div>
     <div class="form-group col-md-4">
         <label for="people">Cantidad de personas</label>
-        <input type="number" class="form-control" name="people" id="people">
+        <input type="number" class="form-control" name="people" id="people" required>
     </div>
     <div class="form-group col-md-4">
         <label for="additional_people">Precio por persona adicional</label>

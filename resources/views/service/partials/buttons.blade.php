@@ -9,6 +9,6 @@
   data-provider_id="{{$provider_id}}"
   data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i></button>
 
-  <a service_id="{{ $service_id }}" class="btn btn-danger btn-sm status-service">
+  <!-- <a service_id="{{ $service_id }}" class="btn btn-danger btn-sm status-service">
       <span class="fa fa-trash"></span>
-  </a>
+  </a> -->

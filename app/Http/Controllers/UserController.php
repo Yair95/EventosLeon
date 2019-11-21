@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Hash;
 use DB;
 
 class UserController extends Controller
@@ -49,7 +50,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'clave' => "rovero",
+          ]);
+          $msg = [
+              'title' => 'Creado!',
+              'text' => 'Usuario creado exitosamente.',
+              'icon' => 'success',
+          ];
+          return redirect('user')->with('message', $msg);
     }
 
     /**
@@ -60,7 +72,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('user.show')->with('user',$user);
     }
 
     /**
@@ -83,9 +95,21 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-      $user = User::findOrFail($request->user_id);
-      $user->update($request->all());
-      return view('user.index');
+        $user = User::findOrFail($request->user_id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if($user->password != null)
+        {
+            $user->password = Hash::make($request->password);
+        }   
+        $user->save();
+        $msg = [
+            'title' => 'Modificado!',
+            'text' => 'Usuario modificado exitosamente.',
+            'icon' => 'success'
+        ];
+
+      return redirect('user')->with('message', $msg);
     }
 
     /**
@@ -94,8 +118,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user) //User $user
     {
-        //
+        $user->delete();
+        $msg = [
+            'title' => "Eliminado!",
+            'text' => 'Usuario eliminado exitosamente.',
+            'icon' => 'success'
+        ];
+        return response()->json($msg);
     }
 }

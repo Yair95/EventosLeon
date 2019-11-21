@@ -25,10 +25,6 @@
 
     <div class="form-row">
         <div class="form-group col-md-12">
-            <button class="btn btn-primary"
-
-                data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i>Editar
-            </button>
             <a class="btn btn-primary btn-md addNew" style="float: right;" href="{{ url('event') }}"><b>Lista de eventos</b></a>
         </div>
     </div>
