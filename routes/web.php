@@ -57,3 +57,6 @@ Route::post('eventservice','EventController@eventservice')->name('event.eventser
 //Preapids
 Route::resource('prepaid','PrepaidController');
 Route::get('showTablePre','PrepaidController@showTablePre')->name('prepaid.showTablePre');
+
+//forecasts
+Route::resource('forecast','ForecastsController');
